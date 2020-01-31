@@ -1,0 +1,27 @@
+{
+    "name": "ubatalov/skand",
+    "description": "",
+    "type": "library",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "umarbatalov",
+            "email": "umarbatalov@mail.ru"
+        }
+    ],
+    "config": {
+        "platform": {
+            "php": "7.4.2"
+        }
+    },
+    "require": {
+        "php": "7.4.2",
+        "psr/container": "^1.0",
+        "tightenco/collect": "^6.13"
+    },
+    "autoload": {
+        "psr-4": {
+            "Skand\\": "src/"
+        }
+    }
+}

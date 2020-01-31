@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    depends_on:
+      - php
+    volumes:
+      - ./src/:/srv/src:ro,cached
+      - ./public/:/srv/public:ro,cached
+      - ./vendor/:/srv/vendor:ro,cached
+    ports:
+      - 80:${NGINX_PORT}
+
+  php:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    volumes:
+      - ./src/:/srv/src:rw,cached
+      - ./public/:/srv/public:rw,cached
+      - ./vendor/:/srv/vendor:rw,cached
+#    depends_on:
+#      - db
+
+#  db:
+#    image: mysql:5.7
+#    environment:
+#      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+#      MYSQL_DATABASE: ${MYSQL_DATABASE}
+#      MYSQL_USER: ${MYSQL_USER}
+#      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+#    volumes:
+#      - db-data:/var/lib/mysql:rw,cached
+#    ports:
+#      - 3306:${DB_PORT}
+
+#volumes:
+#  db-data: {}
